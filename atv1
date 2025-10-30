@@ -1,0 +1,22 @@
+import java.util.Scanner;
+
+public class atv1 {
+    
+    public static void imprimirPadrao(int n) {
+        for (int i = 1; i <= n; i++) {
+            // Cria uma string com o número i repetido i vezes
+            String linha = (i + " ").repeat(i).trim();
+            System.out.println(linha);
+        }
+    }
+    
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.print("Digite o valor de n: ");
+        int n = scanner.nextInt();
+        
+        imprimirPadrao(n);
+        scanner.close();
+    }
+}
