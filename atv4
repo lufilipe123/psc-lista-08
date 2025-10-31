@@ -1,0 +1,25 @@
+import java.util.Scanner;
+
+public class atv4 {
+    
+    public static char verificarSinal(int numero) {
+        if (numero > 0) {
+            return 'P'; 
+        } else {
+            return 'N'; 
+        }
+    }
+    
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.print("Digite um número: ");
+        int numero = scanner.nextInt();
+        
+        char resultado = verificarSinal(numero);
+        
+        System.out.println("O número " + numero + " é: " + resultado);
+        
+        scanner.close();
+    }
+}
