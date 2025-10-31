@@ -1,0 +1,70 @@
+import java.util.Scanner;
+
+public class atv6 {
+    
+    public static int converterHorario(int hora24, char[] periodo) {
+        int hora12;
+        
+        if (hora24 == 0) {
+            hora12 = 12;
+            periodo[0] = 'A'; // A.M.
+        } else if (hora24 < 12) {
+            hora12 = hora24;
+            periodo[0] = 'A'; // A.M.
+        } else if (hora24 == 12) {
+            hora12 = 12;
+            periodo[0] = 'P'; // P.M.
+        } else {
+            hora12 = hora24 - 12;
+            periodo[0] = 'P'; // P.M.
+        }
+        
+        return hora12;
+    }
+    
+    public static void exibirResultado(int hora24, int minuto24, int hora12, int minuto12, char periodo) {
+        String periodoExtenso = (periodo == 'A') ? "A.M." : "P.M.";
+        
+        System.out.println("RESULTADO DA CONVERSÃO");
+        System.out.printf("Horário 24h: %02d:%02d\n", hora24, minuto24);
+        System.out.printf("Horário 12h: %d:%02d %s\n", hora12, minuto12, periodoExtenso);
+    }
+    
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        char continuar;
+        
+        System.out.println("CONVERSOR DE HORÁRIO 24h → 12h");
+        
+        do {
+            // Entrada de dados
+            System.out.print("Digite a hora (0-23): ");
+            int hora24 = scanner.nextInt();
+            
+            System.out.print("Digite os minutos (0-59): ");
+            int minuto24 = scanner.nextInt();
+            
+            // Validação básica
+            if (hora24 < 0 || hora24 > 23 || minuto24 < 0 || minuto24 > 59) {
+                System.out.println("Erro: Horário inválido! Hora deve ser 0-23 e minutos 0-59.");
+                continue;
+            }
+            
+            // Array para armazenar o período (A.M./P.M.)
+            char[] periodo = new char[1];
+            
+            // Conversão
+            int hora12 = converterHorario(hora24, periodo);
+            
+            // Exibição do resultado
+            exibirResultado(hora24, minuto24, hora12, minuto24, periodo[0]);
+            
+            // Verifica se usuário deseja continuar
+            System.out.print("Deseja converter outro horário? (S/N): ");
+            continuar = scanner.next().toUpperCase().charAt(0);
+            
+        } while (continuar == 'S');
+        
+        scanner.close();
+    }
+}
